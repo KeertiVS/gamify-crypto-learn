@@ -2,41 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Crypto Education Platform Design System - Dark Themed */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark Crypto Theme */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 222 84% 6%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 222 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Crypto Primary - Bitcoin Orange */
+    --primary: 25 95% 53%;
+    --primary-foreground: 222 84% 4.9%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Crypto Secondary - Deep Blue */
+    --secondary: 217 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 217 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Crypto Accent - Neon Blue */
+    --accent: 199 89% 48%;
+    --accent-foreground: 222 84% 4.9%;
+
+    /* Success - Crypto Green */
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+
+    /* Warning - Gold */
+    --warning: 43 96% 56%;
+    --warning-foreground: 222 84% 4.9%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 217 32.6% 17.5%;
+    --input: 217 32.6% 17.5%;
+    --ring: 199 89% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Crypto Specific Colors */
+    --crypto-glow: 199 89% 48%;
+    --bitcoin: 25 95% 53%;
+    --ethereum: 225 73% 57%;
+    --neon-green: 142 76% 50%;
+    --neon-purple: 271 91% 65%;
+    
+    /* Gradients */
+    --gradient-crypto: linear-gradient(135deg, hsl(var(--bitcoin)), hsl(var(--accent)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--crypto-glow) / 0.3), hsl(var(--neon-green) / 0.3));
+    --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(var(--secondary)));
+    
+    /* Shadows and Effects */
+    --shadow-glow: 0 0 20px hsl(var(--crypto-glow) / 0.3);
+    --shadow-bitcoin: 0 0 30px hsl(var(--bitcoin) / 0.4);
+    --shadow-neon: 0 0 40px hsl(var(--neon-green) / 0.3);
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +127,54 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
+}
+
+/* Crypto Animations */
+@layer utilities {
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(180deg); }
+  }
+  
+  @keyframes glow-pulse {
+    0%, 100% { box-shadow: 0 0 20px hsl(var(--crypto-glow) / 0.3); }
+    50% { box-shadow: 0 0 40px hsl(var(--crypto-glow) / 0.8); }
+  }
+  
+  @keyframes bitcoin-travel {
+    0% { transform: translateX(-100px) scale(0.8); opacity: 0; }
+    50% { transform: translateX(50%) scale(1.2); opacity: 1; }
+    100% { transform: translateX(calc(100% + 100px)) scale(0.8); opacity: 0; }
+  }
+  
+  @keyframes coin-flip {
+    0% { transform: rotateY(0deg); }
+    50% { transform: rotateY(180deg); }
+    100% { transform: rotateY(360deg); }
+  }
+  
+  @keyframes neon-glow {
+    0%, 100% { filter: drop-shadow(0 0 5px hsl(var(--accent))); }
+    50% { filter: drop-shadow(0 0 20px hsl(var(--accent))) drop-shadow(0 0 30px hsl(var(--neon-green))); }
+  }
+
+  .animate-float { animation: float 3s ease-in-out infinite; }
+  .animate-glow-pulse { animation: glow-pulse 2s ease-in-out infinite; }
+  .animate-bitcoin-travel { animation: bitcoin-travel 4s linear infinite; }
+  .animate-coin-flip { animation: coin-flip 2s ease-in-out infinite; }
+  .animate-neon-glow { animation: neon-glow 2s ease-in-out infinite; }
+  
+  .crypto-gradient { background: var(--gradient-crypto); }
+  .glow-gradient { background: var(--gradient-glow); }
+  .card-gradient { background: var(--gradient-card); }
+  
+  .glow-border {
+    border: 1px solid hsl(var(--crypto-glow) / 0.3);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .bitcoin-glow { box-shadow: var(--shadow-bitcoin); }
+  .neon-glow { box-shadow: var(--shadow-neon); }
 }

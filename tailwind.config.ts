@@ -47,6 +47,24 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        success: {
+          DEFAULT: "hsl(var(--success))",
+          foreground: "hsl(var(--success-foreground))",
+        },
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
+        // Crypto-specific colors
+        crypto: {
+          glow: "hsl(var(--crypto-glow))",
+          bitcoin: "hsl(var(--bitcoin))",
+          ethereum: "hsl(var(--ethereum))",
+          neon: {
+            green: "hsl(var(--neon-green))",
+            purple: "hsl(var(--neon-purple))",
+          },
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

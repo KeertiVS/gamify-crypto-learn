@@ -1,11 +1,42 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import Navigation from '@/components/Navigation';
+import CryptoDashboard from '@/components/CryptoDashboard';
+import GameModule from '@/components/GameModule';
+import LearnEarn from '@/components/LearnEarn';
+import SandboxMode from '@/components/SandboxMode';
 
 const Index = () => {
+  const [currentPage, setCurrentPage] = useState('dashboard');
+  const [userPoints] = useState(1250);
+
+  const renderCurrentPage = () => {
+    switch (currentPage) {
+      case 'dashboard':
+        return <CryptoDashboard />;
+      case 'games':
+        return <GameModule />;
+      case 'learn':
+        return <LearnEarn />;
+      case 'sandbox':
+        return <SandboxMode />;
+      default:
+        return <CryptoDashboard />;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-background">
+      <Navigation 
+        currentPage={currentPage} 
+        onPageChange={setCurrentPage}
+        userPoints={userPoints}
+      />
+      
+      {/* Main Content */}
+      <div className="lg:ml-64 pt-16 lg:pt-0">
+        <main className="p-6">
+          {renderCurrentPage()}
+        </main>
       </div>
     </div>
   );
