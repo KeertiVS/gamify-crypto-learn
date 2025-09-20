@@ -16,6 +16,10 @@ import {
   Target
 } from 'lucide-react';
 
+interface CryptoDashboardProps {
+  onNavigate: (page: string) => void;
+}
+
 interface UserStats {
   level: number;
   points: number;
@@ -24,7 +28,7 @@ interface UserStats {
   totalCourses: number;
 }
 
-const CryptoDashboard = () => {
+const CryptoDashboard = ({ onNavigate }: CryptoDashboardProps) => {
   const [userStats, setUserStats] = useState<UserStats>({
     level: 3,
     points: 1250,
@@ -166,7 +170,7 @@ const CryptoDashboard = () => {
             <Gamepad2 className="w-12 h-12 mx-auto text-crypto-neon-purple group-hover:animate-bounce" />
             <h3 className="font-semibold">Play & Learn</h3>
             <p className="text-sm text-muted-foreground">Interactive games and quizzes</p>
-            <Button variant="outline" className="w-full glow-border">
+            <Button variant="outline" className="w-full glow-border" onClick={() => onNavigate('games')}>
               Start Game <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </CardContent>
@@ -177,7 +181,7 @@ const CryptoDashboard = () => {
             <TrendingUp className="w-12 h-12 mx-auto text-success group-hover:animate-pulse" />
             <h3 className="font-semibold">Sandbox Mode</h3>
             <p className="text-sm text-muted-foreground">Practice with test coins</p>
-            <Button variant="outline" className="w-full glow-border">
+            <Button variant="outline" className="w-full glow-border" onClick={() => onNavigate('sandbox')}>
               Practice Now <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </CardContent>
@@ -188,7 +192,7 @@ const CryptoDashboard = () => {
             <Coins className="w-12 h-12 mx-auto text-warning group-hover:animate-spin" />
             <h3 className="font-semibold">Learn & Earn</h3>
             <p className="text-sm text-muted-foreground">Earn crypto rewards</p>
-            <Button variant="outline" className="w-full glow-border">
+            <Button variant="outline" className="w-full glow-border" onClick={() => onNavigate('learn')}>
               Earn Now <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
           </CardContent>

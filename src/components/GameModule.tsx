@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
+import BlockPuzzleGame from './BlockPuzzleGame';
+import CryptoSudoku from './CryptoSudoku';
 import { 
   Puzzle, 
   Brain, 
@@ -325,31 +327,9 @@ const GameModule = () => {
 
       {currentGame === 'quiz' && <QuizGame />}
       
-      {currentGame === 'puzzle' && (
-        <Card className="glow-border">
-          <CardContent className="p-12 text-center">
-            <Puzzle className="w-16 h-16 mx-auto mb-4 text-crypto-neon-green animate-pulse" />
-            <h3 className="text-xl font-semibold mb-2">Block Puzzle Game</h3>
-            <p className="text-muted-foreground mb-4">
-              Build blockchain networks by connecting blocks in the correct sequence.
-            </p>
-            <Badge variant="secondary">Coming Soon</Badge>
-          </CardContent>
-        </Card>
-      )}
+      {currentGame === 'puzzle' && <BlockPuzzleGame />}
       
-      {currentGame === 'sudoku' && (
-        <Card className="glow-border">
-          <CardContent className="p-12 text-center">
-            <Star className="w-16 h-16 mx-auto mb-4 text-warning animate-spin" />
-            <h3 className="text-xl font-semibold mb-2">Crypto Sudoku</h3>
-            <p className="text-muted-foreground mb-4">
-              Solve sudoku puzzles with crypto symbols and earn rewards.
-            </p>
-            <Badge variant="secondary">Coming Soon</Badge>
-          </CardContent>
-        </Card>
-      )}
+      {currentGame === 'sudoku' && <CryptoSudoku />}
     </div>
   );
 };

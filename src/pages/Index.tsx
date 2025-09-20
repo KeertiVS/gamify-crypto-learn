@@ -12,7 +12,7 @@ const Index = () => {
   const renderCurrentPage = () => {
     switch (currentPage) {
       case 'dashboard':
-        return <CryptoDashboard />;
+        return <CryptoDashboard onNavigate={setCurrentPage} />;
       case 'games':
         return <GameModule />;
       case 'learn':
@@ -20,7 +20,7 @@ const Index = () => {
       case 'sandbox':
         return <SandboxMode />;
       default:
-        return <CryptoDashboard />;
+        return <CryptoDashboard onNavigate={setCurrentPage} />;
     }
   };
 

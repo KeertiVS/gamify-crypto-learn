@@ -3,6 +3,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
+import CourseContent from './CourseContent';
+import { useToast } from '@/hooks/use-toast';
 import { 
   BookOpen, 
   Play, 
@@ -104,9 +106,21 @@ const courses: Course[] = [
   }
 ];
 
-const LearnEarn = () => {
+const LearnEarn = ({ onNavigate }: { onNavigate?: (page: string) => void }) => {
+  const { toast } = useToast();
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
-  const [totalEarned, setTotalEarned] = useState(90); // Already earned from completed courses
+  const [totalEarned, setTotalEarned] = useState(90);
+  const [coursesState, setCoursesState] = useState(courses);
+
+  const completeCourse = (courseId: string, reward: number) => {
+    setCoursesState(prev => prev.map(course => 
+      course.id === courseId 
+        ? { ...course, completed: true, progress: 100 }
+        : course
+    ));
+    setTotalEarned(prev => prev + reward);
+    setSelectedCourse(null);
+  };
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -132,7 +146,7 @@ const LearnEarn = () => {
     }
   };
 
-  const completedCourses = courses.filter(course => course.completed).length;
+  const completedCourses = coursesState.filter(course => course.completed).length;
   const totalCourses = courses.length;
   const completionPercentage = (completedCourses / totalCourses) * 100;
 
